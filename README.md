@@ -3,6 +3,8 @@
 
 [![Build Status](https://travis-ci.org/hoveytech/ng2-select-hoveytech.svg?branch=development)](https://travis-ci.org/hoveytech/ng2-select-hoveytech)
 
+#### <span style="color: blue;">NOTE: This is a port of ng2-select library by [valor-software](https://github.com/valor-software). due to this [issue](https://github.com/valor-software/ng2-select/issues/769).</span>
+
 ## Quick start
 
 1. A recommended way to install ***ng2-select-hoveytech*** is through [npm](https://www.npmjs.com/search?q=ng2-select-hoveytech) package manager using the following command:
