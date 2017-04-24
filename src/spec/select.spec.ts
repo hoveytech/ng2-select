@@ -49,11 +49,13 @@ describe('Component: ng2-select', () => {
         expect(comp.select.valid).toBeTruthy();
     }));
 
-    let openAndCloseOptions = ( ngSelectElement: DebugElement) => { 
+    let openOptions = ( ngSelectElement: DebugElement) => { 
         var buttonEl = ngSelectElement.children[0].children[1].children[0];
-
         buttonEl.nativeElement.click();
+    }
 
+    let openAndCloseOptions = ( ngSelectElement: DebugElement) => { 
+        openOptions(ngSelectElement);
         ngSelectElement.parent.nativeElement.click();
         tick();
     }
@@ -83,6 +85,26 @@ describe('Component: ng2-select', () => {
         openAndCloseOptions(selectEl);
         
         expect(called).toBeTruthy();
+    }));
+
+    it('does apply class dropdown cssClass by default', fakeAsync(() => {
+        let fixture = initializeFixture(TestSelectActiveComponent, 
+             '<<ng-select [active]="selected" [items]="items"></ng-select>');
+        let comp = fixture.componentInstance;
+
+        let selectEl = fixture.debugElement.children[0].children[0];
+        expect(selectEl.nativeElement.classList.contains('dropdown')).toBeTruthy();
+        expect(selectEl.nativeElement.classList.contains('dropup')).toBeFalsy();
+    }));
+
+    it('does apply class dropup when dropdown is false', fakeAsync(() => {
+        let fixture = initializeFixture(TestSelectActiveComponent, 
+             '<<ng-select [dropdown]="false" [active]="selected" [items]="items"></ng-select>');
+        let comp = fixture.componentInstance;
+
+        let selectEl = fixture.debugElement.children[0].children[0];
+        expect(selectEl.nativeElement.classList.contains('dropup')).toBeTruthy();
+        expect(selectEl.nativeElement.classList.contains('dropdown')).toBeFalsy();
     }));
 });
 

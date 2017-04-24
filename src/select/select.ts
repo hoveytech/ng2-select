@@ -123,7 +123,8 @@ let styles = `
      *ngIf="multiple === false"
      (keyup)="mainClick($event)"
      [offClick]="clickedOutside"
-     class="ui-select-container dropdown open">
+     class="ui-select-container open"
+     [ngClass]="{ 'dropdown' : dropdown, 'dropup' : !dropdown }">
     <div [ngClass]="{'ui-disabled': disabled}"></div>
     <div class="ui-select-match"
          *ngIf="!inputMode">
@@ -189,7 +190,8 @@ let styles = `
      (keyup)="mainClick($event)"
      (focus)="focusToInput('')"
      [offClick]="clickedOutside"
-     class="ui-select-container ui-select-multiple dropdown form-control open">
+     class="ui-select-container ui-select-multiple form-control open"
+     [ngClass]="{ 'dropdown' : dropdown, 'dropup' : !dropdown }">
     <div [ngClass]="{'ui-disabled': disabled}"></div>
     <span class="ui-select-match">
         <span *ngFor="let a of active">
@@ -259,7 +261,8 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() public textField: string = 'text';
   @Input() public childrenField: string = 'children';
   @Input() public multiple: boolean = false;
-
+  @Input() public dropdown: boolean = true;
+  
   @Input()
   public set items(value: Array<any>) {
     if (!value) {

@@ -1,6 +1,6 @@
 {
   "name": "ng2-select-hoveytech-base",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": true,
   "description": "Angular2 based replacement for select boxes",
   "scripts": {
@@ -19,6 +19,7 @@
     "start": "ng serve --aot",
     "pretest": "run-s lint build link",
     "test": "ng test -sr",
+    "test-watch": "ng test",
     "test-coverage": "ng test -sr -cc",
     "version": "npm run flow.changelog && git add -A"
   },
