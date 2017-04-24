@@ -1,19 +1,13 @@
-# Native UI Select Angular component ([demo](http://valor-software.com/ng2-select/))
-## ng2-select [![npm version](https://badge.fury.io/js/ng2-select.svg)](http://badge.fury.io/js/ng2-select) [![npm downloads](https://img.shields.io/npm/dm/ng2-select.svg)](https://npmjs.org/ng2-select)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
+# Native UI Select Angular component
+## ng2-select [![npm version](https://badge.fury.io/js/ng2-select-hoveytech.svg)](http://badge.fury.io/js/ng2-select-hoveytech) [![npm downloads](https://img.shields.io/npm/dm/ng2-select-hoveytech.svg)](https://npmjs.org/ng2-select-hoveytech)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
 
-[![Angular 2 Style Guide](https://mgechev.github.io/angular2-style-guide/images/badge.svg)](https://github.com/mgechev/angular2-style-guide)
-[![Build Status](https://travis-ci.org/valor-software/ng2-select.svg?branch=development)](https://travis-ci.org/valor-software/ng2-select)
+[![Build Status](https://travis-ci.org/hoveytech/ng2-select-hoveytech.svg?branch=development)](https://travis-ci.org/hoveytech/ng2-select-hoveytech)
 
 ## Quick start
 
-1. A recommended way to install ***ng2-select*** is through [npm](https://www.npmjs.com/search?q=ng2-select) package manager using the following command:
+1. A recommended way to install ***ng2-select-hoveytech*** is through [npm](https://www.npmjs.com/search?q=ng2-select-hoveytech) package manager using the following command:
 
-  `npm i ng2-select --save`
-
-2. Include `ng2-select.css` in your project
-
-3. More information regarding of using ***ng2-select*** is located in
-  [demo](http://valor-software.github.io/ng2-select/) and [demo sources](https://github.com/valor-software/ng2-select/tree/master/demo).
+  `npm i ng2-select-hoveytech --save`
 
 ## API
 
@@ -30,6 +24,8 @@
   - `placeholder` (`?string=''`) - Placeholder text to display when the element has no focus and selected items.
   - `disabled` (`?boolean=false`) - When `true`, it specifies that the component should be disabled.
   - `multiple` - (`?boolean=false`) - Mode of this component. If set `true` user can select more than one option.
+  - `dropdown` (`?boolean=true`) - Set to false if you want the dropup class applied.
+
   This option only applies to single-value inputs, as multiple-value inputs don't have the search input in the dropdown to begin with.
 
 ### Events
@@ -43,11 +39,11 @@
 
 Please follow this guidelines when reporting bugs and feature requests:
 
-1. Use [GitHub Issues](https://github.com/valor-software/ng2-select/issues) board to report bugs and feature requests (not our email address)
+1. Use [GitHub Issues](https://github.com/hoveytech/ng2-select/issues) board to report bugs and feature requests (not our email address)
 2. Please **always** write steps to reproduce the error. That way we can focus on fixing the bug, not scratching our heads trying to reproduce it.
 
 Thanks for understanding!
 
 ### License
 
-The MIT License (see the [LICENSE](https://github.com/valor-software/ng2-select/blob/master/LICENSE) file for the full text)
+The MIT License (see the [LICENSE](https://github.com/hoveytech/ng2-select/blob/master/LICENSE) file for the full text)
