@@ -344,7 +344,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   private _disabled: boolean = false;
   private _active: Array<SelectItem> = [];
 
-  public constructor(element: ElementRef, 
+  public constructor(element: ElementRef,
     private sanitizer: DomSanitizer,
     private changeDetectorRef: ChangeDetectorRef) {
     this.element = element;
@@ -484,6 +484,10 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     this.active = val;
     this.data.emit(this.active);
   }
+
+   public setDisabledState(isDisabled: boolean): void {
+     this.disabled = true;
+   }
 
   public registerOnChange(fn: (_: any) => {}): void { this.onChange = fn; }
   public registerOnTouched(fn: () => {}): void { this.onTouched = fn; }
