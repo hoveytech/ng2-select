@@ -70,6 +70,18 @@ describe('Component: ng2-select', () => {
         expect(selectComponent.disabled).toBeTruthy();
     }));
 
+    it('does set enabled if enabled called using formControl', fakeAsync(() => {
+        let fixture = initializeFixture(TestSelectActiveComponent, 
+             '<form [formGroup]="formGroup"><ng-select formControlName="select" [ngModel]="selected" [items]="items"></ng-select></form>');
+        let comp = fixture.componentInstance;
+        let selectEl = fixture.debugElement.children[0].children[0];
+        let selectComponent = <SelectComponent>selectEl.injector.get(SelectComponent);
+
+        comp.select.disable();
+        comp.select.enable();
+        expect(selectComponent.disabled).toBeFalsy();
+    }));
+
     let openOptions = ( ngSelectElement: DebugElement) => { 
         var buttonEl = ngSelectElement.children[0].children[1].children[0];
         buttonEl.nativeElement.click();

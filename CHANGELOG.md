@@ -1,3 +1,17 @@
+<a name="0.1.5"></a>
+## [0.1.5](https://github.com/hoveytech/ng2-select/compare/v1.2.0...v0.1.5) (2017-04-26)
+
+### Bug fixes
+
+* Silly bug fix for disabled modification using FormControl
+
+<a name="0.1.4"></a>
+## [0.1.4](https://github.com/hoveytech/ng2-select/compare/v1.2.0...v0.1.4) (2017-04-26)
+
+### Enhancement
+
+* Added support for FormControl setting disabled for control
+
 <a name="0.1.3"></a>
 ## [0.1.3](https://github.com/hoveytech/ng2-select/compare/v1.2.0...v0.1.3) (2017-04-26)
 

@@ -34,7 +34,8 @@ let styles = `
   }
   
   .ui-disabled {
-    background-color: #eceeef;
+    background-color: #eee;
+    border: 1px solid #ccc;
     border-radius: 4px;
     position: absolute;
     width: 100%;
@@ -44,6 +45,11 @@ let styles = `
     top: 0;
     left: 0;
     cursor: not-allowed;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    box-shadow: inset 0 1px 1px rgba(0, 0, 0, .075);
+    -webkit-transition: border-color ease-in-out .15s, -webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s, box-shadow ease-in-out .15s;
   }
   
   .ui-select-choices {
@@ -486,7 +492,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   }
 
    public setDisabledState(isDisabled: boolean): void {
-     this.disabled = true;
+     this.disabled = isDisabled;
    }
 
   public registerOnChange(fn: (_: any) => {}): void { this.onChange = fn; }
