@@ -1,7 +1,7 @@
 # Native UI Select Angular component
 ## ng2-select [![npm version](https://badge.fury.io/js/ng2-select-hoveytech.svg)](http://badge.fury.io/js/ng2-select-hoveytech) [![npm downloads](https://img.shields.io/npm/dm/ng2-select-hoveytech.svg)](https://npmjs.org/ng2-select-hoveytech)[![slack](https://ngx-slack.herokuapp.com/badge.svg)](https://ngx-slack.herokuapp.com)
 
-[![Build Status](https://travis-ci.org/hoveytech/ng2-select-hoveytech.svg?branch=development)](https://travis-ci.org/hoveytech/ng2-select-hoveytech)
+[![Build Status](https://travis-ci.org/hoveytech/ng2-select.svg?branch=development)](https://travis-ci.org/hoveytech/ng2-select-hoveytech)
 
 #### <span style="color: blue;">NOTE: This is a port of ng2-select library by [valor-software](https://github.com/valor-software). due to this [issue](https://github.com/valor-software/ng2-select/issues/769).</span>
 
