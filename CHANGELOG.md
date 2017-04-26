@@ -1,3 +1,17 @@
+<a name="0.1.3"></a>
+## [0.1.3](https://github.com/hoveytech/ng2-select/compare/v1.2.0...v0.1.3) (2017-04-26)
+
+### Bug fixes
+
+* Fix for active property setting ngModel changed callback
+
+<a name="0.1.2"></a>
+## [0.1.2](https://github.com/hoveytech/ng2-select/compare/v1.2.0...v0.1.2) (2017-04-25)
+
+### Bug fixes
+
+* Fix to active property setter for calling change callback
+
 <a name="0.1.1"></a>
 ## [0.1.1](https://github.com/hoveytech/ng2-select/compare/v1.2.0...v0.1.1) (2017-04-24)
 

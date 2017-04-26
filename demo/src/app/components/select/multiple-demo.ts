@@ -15,17 +15,11 @@ export class MultipleDemoComponent {
     'Sofia', 'Stockholm', 'Stuttgart', 'The Hague', 'Turin', 'Valencia', 'Vienna',
     'Vilnius', 'Warsaw', 'Wrocław', 'Zagreb', 'Zaragoza'];
 
-  private value:any = ['Athens'];
-  private _disabledV:string = '0';
-  private disabled:boolean = false;
+  public value:any = ['Athens'];
+  public disabled:boolean = false;
 
-  private get disabledV():string {
-    return this._disabledV;
-  }
-
-  private set disabledV(value:string) {
-    this._disabledV = value;
-    this.disabled = this._disabledV === '1';
+  public toggleSelectDisabledState() {
+    this.disabled = !this.disabled;
   }
 
   public selected(value:any):void {

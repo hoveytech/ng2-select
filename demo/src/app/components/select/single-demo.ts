@@ -1,11 +1,12 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
+import { FormBuilder, FormGroup, FormControl, Validators } from '@angular/forms';
 
 @Component({
   selector: 'single-demo',
   templateUrl: './single-demo.html'
 })
-export class SingleDemoComponent {
-  public items:Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
+export class SingleDemoComponent implements OnInit {
+  public items: Array<string> = ['Amsterdam', 'Antwerp', 'Athens', 'Barcelona',
     'Berlin', 'Birmingham', 'Bradford', 'Bremen', 'Brussels', 'Bucharest',
     'Budapest', 'Cologne', 'Copenhagen', 'Dortmund', 'Dresden', 'Dublin',
     'Düsseldorf', 'Essen', 'Frankfurt', 'Genoa', 'Glasgow', 'Gothenburg',
@@ -15,33 +16,44 @@ export class SingleDemoComponent {
     'Rotterdam', 'Seville', 'Sheffield', 'Sofia', 'Stockholm', 'Stuttgart',
     'The Hague', 'Turin', 'Valencia', 'Vienna', 'Vilnius', 'Warsaw', 'Wrocław',
     'Zagreb', 'Zaragoza', 'Łódź'];
+  public active: Array<string>;
+  public value: any = {};
+  public disabled: boolean = false;
+  public formGroup: FormGroup;
+  public selectControl: FormControl;
 
-  private value:any = {};
-  private _disabledV:string = '0';
-  private disabled:boolean = false;
-
-  private get disabledV():string {
-    return this._disabledV;
+  constructor(private formBuilder: FormBuilder) {
+    this.active = null;
   }
 
-  private set disabledV(value:string) {
-    this._disabledV = value;
-    this.disabled = this._disabledV === '1';
+  public ngOnInit(): void {
+    this.selectControl = this.formBuilder.control(null, Validators.required)
+    this.formGroup = this.formBuilder.group({
+      selectControl: this.selectControl
+    });
+
+    setTimeout(() => {
+        this.active = [this.items[0]];
+    });
   }
 
-  public selected(value:any):void {
+  public toggleSelectDisabledState() {
+    this.disabled = !this.disabled;
+  }
+
+  public selected(value: any): void {
     console.log('Selected value is: ', value);
   }
 
-  public removed(value:any):void {
+  public removed(value: any): void {
     console.log('Removed value is: ', value);
   }
 
-  public typed(value:any):void {
+  public typed(value: any): void {
     console.log('New search input: ', value);
   }
 
-  public refreshValue(value:any):void {
+  public refreshValue(value: any): void {
     this.value = value;
   }
 }

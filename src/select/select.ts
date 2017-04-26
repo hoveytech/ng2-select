@@ -1,4 +1,4 @@
-import { Component, Input, Output, EventEmitter, ElementRef, OnInit, forwardRef } from '@angular/core';
+import { Component, Input, Output, EventEmitter, ElementRef, OnInit, forwardRef, ChangeDetectorRef } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { DomSanitizer, SafeHtml } from '@angular/platform-browser';
 import { SelectItem } from './select-item';
@@ -262,7 +262,7 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   @Input() public childrenField: string = 'children';
   @Input() public multiple: boolean = false;
   @Input() public dropdown: boolean = true;
-  
+
   @Input()
   public set items(value: Array<any>) {
     if (!value) {
@@ -291,6 +291,8 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
 
   @Input()
   public set active(selectedItems: Array<any>) {
+    var prev = this._active;
+
     if (!selectedItems || selectedItems.length === 0) {
       this._active = [];
     } else {
@@ -304,8 +306,6 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
         return new SelectItem(data);
       });
     }
-
-    this.onChange(this._active);
   }
 
   @Output() public data: EventEmitter<any> = new EventEmitter();
@@ -344,7 +344,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   private _disabled: boolean = false;
   private _active: Array<SelectItem> = [];
 
-  public constructor(element: ElementRef, private sanitizer: DomSanitizer) {
+  public constructor(element: ElementRef, 
+    private sanitizer: DomSanitizer,
+    private changeDetectorRef: ChangeDetectorRef) {
     this.element = element;
     this.clickedOutside = this.clickedOutside.bind(this);
   }
@@ -465,9 +467,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
   }
 
   public clickedOutside(): void {
-    if (this.optionsOpened){
-        this.onTouched();
-        this.closed.emit();
+    if (this.optionsOpened) {
+      this.onTouched();
+      this.closed.emit();
     }
 
     this.inputMode = false;

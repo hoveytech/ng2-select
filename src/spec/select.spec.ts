@@ -17,16 +17,6 @@ describe('Component: ng2-select', () => {
         TestBed.overrideComponent(TestSelectEmptyComponent, { set: { template: html } });
     });
 
-    it('fixture should not be null', fakeAsync(() => {
-        TestBed.overrideComponent(TestSelectActiveComponent, { set: { template: '<div></div>' } });
-        let fixture = TestBed.createComponent(TestSelectActiveComponent);
-        let context = fixture.componentInstance;
-        fixture.detectChanges();
-        tick();
-
-        expect(fixture).not.toBeNull();
-    }));
-
     let initializeFixture = <TFixture>(fixtureType: Type<TFixture>, template: string) : ComponentFixture<TFixture> => { 
         TestBed.overrideComponent(fixtureType, { set: { template } });
         let fixture = TestBed.createComponent(fixtureType);
@@ -37,9 +27,19 @@ describe('Component: ng2-select', () => {
         return fixture;
     };
 
-    it('does set call ngModel callback if active value is changed', fakeAsync(() => {
+    it('fixture should not be null', fakeAsync(() => {
+        TestBed.overrideComponent(TestSelectActiveComponent, { set: { template: '<div></div>' } });
+        let fixture = TestBed.createComponent(TestSelectActiveComponent);
+        let context = fixture.componentInstance;
+        fixture.detectChanges();
+        tick();
+
+        expect(fixture).not.toBeNull();
+    }));
+
+    it('does set implement ngModel and sets active internally if using ngModel', fakeAsync(() => {
         let fixture = initializeFixture(TestSelectActiveComponent, 
-             '<form [formGroup]="formGroup"><ng-select formControlName="select" ngModel [active]="selected" [items]="items" ></ng-select></form>');
+             '<form [formGroup]="formGroup"><ng-select formControlName="select" [ngModel]="selected" [items]="items"></ng-select></form>');
         let comp = fixture.componentInstance;
 
         expect(comp.select.value).toBeDefined();
@@ -47,6 +47,15 @@ describe('Component: ng2-select', () => {
         expect(comp.select.value[0].id).toBe(1);
         expect(comp.select.errors).toBeNull();
         expect(comp.select.valid).toBeTruthy();
+        expect(comp.select.pristine).toBeTruthy();
+        expect(comp.select.touched).toBeFalsy();
+
+        let selectEl = fixture.debugElement.children[0].children[0];
+        let selectComponent = <SelectComponent>selectEl.injector.get(SelectComponent);
+
+        expect(selectComponent.active).toBeDefined();
+        expect(selectComponent.active.length).toBe(1);
+        expect(selectComponent.active[0].id).toBe(1);
     }));
 
     let openOptions = ( ngSelectElement: DebugElement) => { 

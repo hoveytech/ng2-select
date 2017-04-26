@@ -1,21 +1,18 @@
-<div style="width: 300px; margin-bottom: 20px;">
-  <h3>Select a single city</h3>
-  <ng-select [allowClear]="true"
-              [items]="items"
-              [disabled]="disabled"
-              (data)="refreshValue($event)"
-              (selected)="selected($event)"
-              (removed)="removed($event)"
-              (typed)="typed($event)"
-              placeholder="No city selected">
-  </ng-select>
-  <p></p>
-  <pre>{{value.text}}</pre>
-  <div>
-    <button type="button" class="btn btn-primary"
-            [(ngModel)]="disabledV" btnCheckbox
-            btnCheckboxTrue="1" btnCheckboxFalse="0">
-      {{disabled === '1' ? 'Enable' : 'Disable'}}
+<form novalidate [formGroup]="formGroup">
+  <div style="width: 300px; margin-bottom: 20px;">
+    <h3>Select a single city</h3>
+    <ng-select [allowClear]="true" [items]="items" [active]="active" [disabled]="disabled" (data)="refreshValue($event)" (selected)="selected($event)"
+      formControlName="selectControl" ngModel
+      (removed)="removed($event)" (typed)="typed($event)" placeholder="No city selected">
+    </ng-select>
+    <p></p>
+    <pre>{{value.text}}</pre>
+
+    <div>
+      <button type="button" class="btn btn-primary" (click)="toggleSelectDisabledState()">
+          {{disabled ? 'Enable' : 'Disable'}}
     </button>
+    </div>
   </div>
-</div>
+
+</form>
