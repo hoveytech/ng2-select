@@ -11,7 +11,7 @@ describe('Component: ng2-select', () => {
 
     beforeEach(() => {
         TestBed.configureTestingModule({
-            declarations: [TestSelectEmptyComponent, TestSelectActiveComponent],
+            declarations: [TestSelectEmptyComponent, TestSelectActiveComponent, TestSelectAsyncComponent],
             imports: [SelectModule, FormsModule, ReactiveFormsModule]
         });
         TestBed.overrideComponent(TestSelectEmptyComponent, { set: { template: html } });
@@ -122,7 +122,7 @@ describe('Component: ng2-select', () => {
 
     it('does apply class dropdown cssClass by default', fakeAsync(() => {
         let fixture = initializeFixture(TestSelectActiveComponent, 
-             '<<ng-select [active]="selected" [items]="items"></ng-select>');
+             '<ng-select [active]="selected" [items]="items"></ng-select>');
         let comp = fixture.componentInstance;
 
         let selectEl = fixture.debugElement.children[0].children[0];
@@ -132,12 +132,34 @@ describe('Component: ng2-select', () => {
 
     it('does apply class dropup when dropdown is false', fakeAsync(() => {
         let fixture = initializeFixture(TestSelectActiveComponent, 
-             '<<ng-select [dropdown]="false" [active]="selected" [items]="items"></ng-select>');
+             '<ng-select [dropdown]="false" [active]="selected" [items]="items"></ng-select>');
         let comp = fixture.componentInstance;
 
         let selectEl = fixture.debugElement.children[0].children[0];
         expect(selectEl.nativeElement.classList.contains('dropup')).toBeTruthy();
         expect(selectEl.nativeElement.classList.contains('dropdown')).toBeFalsy();
+    }));
+
+    it('does display options when items added after typing', fakeAsync(() => {
+        let fixture = initializeFixture(TestSelectAsyncComponent, 
+             '<ng-select (typed)="onFilterChanged($event)" [items]="items"></ng-select>');
+        let comp = fixture.componentInstance;
+
+        let selectEl = fixture.debugElement.children[0];
+        let select = <SelectComponent>selectEl.injector.get(SelectComponent);
+        openOptions(selectEl);
+        fixture.detectChanges();
+        let inputEl = selectEl.children[0].children[1];
+        inputEl.nativeElement.value = 'T';
+        inputEl.nativeElement.dispatchEvent(new KeyboardEvent('keydown',{
+            "key": "T"
+        }));
+
+        tick();
+        fixture.detectChanges();
+
+        let optionsUlEl = selectEl.children[0].children[2];
+        expect(optionsUlEl.children.length).toBe(3); // count of items in options.
     }));
 });
 
@@ -179,6 +201,27 @@ class TestSelectActiveComponent implements OnInit {
             this.items.push(new SelectItem({ id: 3, text: 'Item 3' }));
 
             this.selected = [this.items[0]];
+        });
+    }
+}
+
+@Component({
+    selector: 'select-active-test',
+    template: '<ng-select [items]="items"></ng-select>'
+})
+class TestSelectAsyncComponent implements OnInit {
+    items: Array<SelectItem>;
+
+    constructor(private builder: FormBuilder) {
+    }
+
+    public onFilterChanged(filterText: string): void{
+        setTimeout(() => {
+            this.items = [
+                new SelectItem({ id: 1, text: '***' + filterText + '***'}),
+                new SelectItem({ id: 2, text: '***' + filterText + '***'}),
+                new SelectItem({ id: 3, text: '***' + filterText + '***'})
+            ];
         });
     }
 }

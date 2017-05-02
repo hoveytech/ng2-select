@@ -1,3 +1,10 @@
+<a name="0.1.6"></a>
+## [0.1.6](https://github.com/hoveytech/ng2-select/compare/v0.1.5...v0.1.6) (2017-05-02)
+
+### Bug fixes
+
+* Fixed issue with setting items async, while options are displayed.
+
 <a name="0.1.5"></a>
 ## [0.1.5](https://github.com/hoveytech/ng2-select/compare/v1.2.0...v0.1.5) (2017-04-26)
 

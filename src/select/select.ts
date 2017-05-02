@@ -280,6 +280,10 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
         }
       });
       this.itemObjects = this._items.map((item: any) => (typeof item === 'string' ? new SelectItem(item) : new SelectItem({ id: item[this.idField], text: item[this.textField], children: item[this.childrenField] })));
+
+      if (this.optionsOpened) {
+        this.open();
+      }
     }
   }
 
@@ -491,9 +495,9 @@ export class SelectComponent implements OnInit, ControlValueAccessor {
     this.data.emit(this.active);
   }
 
-   public setDisabledState(isDisabled: boolean): void {
-     this.disabled = isDisabled;
-   }
+  public setDisabledState(isDisabled: boolean): void {
+    this.disabled = isDisabled;
+  }
 
   public registerOnChange(fn: (_: any) => {}): void { this.onChange = fn; }
   public registerOnTouched(fn: () => {}): void { this.onTouched = fn; }
